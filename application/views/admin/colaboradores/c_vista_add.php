@@ -24,8 +24,8 @@
 					<div class="col-sm-12">
 						<div class="row">
 							<div class="col-sm-6 form-group">
-								<label>Nombres y Apellidos</label>
-								<input type="text" placeholder="ejemplo:  Pepito Grillo" class="form-control" required="" name="nombreApellido">
+								<label>Nombres completo</label>
+								<input type="text" placeholder="ejemplo:  Pepito Grillo" class="form-control" required="" name="nombre_completo">
 							</div>
 							<div class="col-sm-6 form-group">
 								<label>Correo Electronico</label>
@@ -49,9 +49,10 @@
                   <option>Chuquisaca</option>
                 </select>
 							</div>	
-							<div class="col-sm-4 form-group">
-								<label>C. I.</label>
-								<input type="number" placeholder="Carnet de identidad.." class="form-control" required="" name="ci">
+							<div class="col-sm-4 form-group <?php echo !empty(form_error("ci"))?'has-error':'';?>">
+								<label for="ci">C. I.</label>
+								<input type="number" placeholder="Carnet de identidad.." class="form-control" name="ci"  id="ci" value="<?php echo set_value("ci");?>">
+								<?php echo form_error("ci", "<span class='help-block'>", "</span>");?>
 							</div>	
 							<div class="col-sm-4 form-group">
 								<label>Telefono</label>
@@ -59,20 +60,22 @@
 							</div>		
             </div>	
             <div class="row">
-							<div class="col-sm-6 form-group">
+							<div class="col-sm-6 form-group <?php echo !empty(form_error("nombre_usuario"))?'has-error':'';?>">
                 <label>NOMBRE DE USUARIO</label>
-					    	<input type="text" placeholder="Nombre de usuario o id.." class="form-control" name="nombre_usuario" required="">
+					    	<input type="text" placeholder="Nombre de usuario o id.." class="form-control" name="nombre_usuario" value="<?php echo set_value("nombre_usuario");?>"> 
+								<?php echo form_error("nombre_usuario", "<span class='help-block'>", "</span>");?>
 							</div>
-							<div class="col-sm-6 form-group">
+							<div class="col-sm-6 form-group <?php echo !empty(form_error("clave"))?'has-error':'';?>">
                 <label>CONTRASEÑA</label>
-						    <input type="password" class="form-control" name="clave" required="">
+						    <input type="password" class="form-control" name="clave" value="<?php echo set_value("clave");?>">
+								<?php echo form_error("clave", "<span class='help-block'>", "</span>");?>
 							</div>
 						</div>
 						<div class="row">
 								<div class="col-md-12 text-center">
 									<input type="hidden" name="registrarse" value="registrarse">				
                   <button type="submit" class="btn btn-primary">Guardar</button>
-                  <a href="<?php echo base_url(); ?>" id="cancel" name="cancel" class="btn btn-default"><strong>Cancelar</strong></a>
+                  <a href="<?php echo base_url(); ?>admin/colaboradores" id="cancel" name="cancel" class="btn btn-default"><strong>Cancelar</strong></a>
 								</div>
             </div>
           		
@@ -81,8 +84,8 @@
       </div>
     </div>	
     <!-- fin -->
-    </div>
-	</div>
+    <!-- </div>
+	</div> -->
   
     
     </div>

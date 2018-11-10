@@ -14,7 +14,10 @@
 <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet" />
 <!-- DataTables -->
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/datatables.net-bs/css/dataTables.bootstrap.min.css">
- 
+<!-- bootstrap datepicker -->
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/select2/dist/css/select2.min.css">
 </head>
 <body>
 <div id="wrapper">
@@ -32,17 +35,22 @@
                 </div>
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav">
-                        <!-- <li class="active"> --><li><a href="<?php echo base_url(); ?>">Inicio</a></li> 
-						<li><a href="nosotros">Acerca de nosotros</a></li>
-						<li><a href="cursos">Cursos</a></li>
-                        <li><a href="galeria">Galeria</a></li>
-                        <li><a href="precios">Precios</a></li>
-                        <li><a href="contactenos">Contactatenos</a></li>
+                        <!-- <li class="active"> --><li><a href="<?php echo base_url(); ?>">Inicio</a></li>						
                         <?php
                             if(!$this->session->userdata("NOMBRE_USUARIO")){
-                        ?> <li><a href="login">Iniciar sesion</a></li>  <?php    
+                        ?>      <li><a href="<?php echo base_url()?>nosotros">Acerca de nosotros</a></li>
+                                <li><a href="<?php echo base_url()?>cursos">Cursos</a></li>
+                                <li><a href="<?php echo base_url()?>galeria">Galeria</a></li>
+                                <li><a href="<?php echo base_url()?>precios">Precios</a></li>
+                                <li><a href="<?php echo base_url()?>contactenos">Contactatenos</a></li>
+                                <li><a href="<?php echo base_url()?>login">Iniciar sesion</a></li>             
+                        <?php    
                             }else{
-                        ?>  <li><a href="<?php echo base_url();?>auth/logout">Cerrar Sesion</a></li>     <?php  
+                        ?>      <li><a href="<?php echo base_url()?>admin/colaboradores/add">Registrar Colaborador</a></li> 
+                                <li><a href="<?php echo base_url()?>admin/tutores/add">Registrar Tutor</a></li>
+                                <li><a href="<?php echo base_url()?>admin/ninos/add">Registrar Niño</a></li>
+                                <li><a href="<?php echo base_url();?>auth/logout">Cerrar Sesion</a></li>
+                        <?php  
                             }
                         ?>
                         

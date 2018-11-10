@@ -14,15 +14,4 @@ class Model_usuario extends CI_Model {
       return false;
     }
   }
-
-  public function getNombreFacilitador($id_usuario){
-    $this->db->where("ID_USUARIO", $id_usuario);
- 
-    $resultados = $this->db->get("facilitador");
-    if($resultados->num_rows() > 0){
-      return $resultados->row();
-    }else{
-      return false;
-    }
-  }
 }

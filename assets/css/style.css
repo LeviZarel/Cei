@@ -354,6 +354,8 @@ margin-bottom:50px;
 .c2{/* border: #D867B2 1px solid; */color: #D867B2;}
 .c3{/* border: #61B331 1px solid; */color: #4BC567;}
 .c4{/* border: #609cec 1px solid; */color: #26AFF0;}
+.c5{/* border: #609cec 1px solid; */color: #f5aa3a;}
+.c6{/* border: #609cec 1px solid; */color: #7f54f5;}
 .skill-home .icons {padding: 33px 0 0 0;width: 100%;height: 178px;/* color: rgb(255, 255, 255); */font-size: 42px;font-size: 76px;text-align: center;-ms-border-radius: 50%;-moz-border-radius: 50%;-webkit-border-radius: 50%;border-radius: 0;display: inline-table;}
 .skill-home h2 {
 padding-top: 20px;
@@ -1023,7 +1025,7 @@ footer .widget .social-network {
 	right:0;
 
 }
-.box-area{border: 1px solid #F3F3F3;padding: 0 15px 12px;padding-top: 70px;margin-top: -42px;background-color: #F9F9F9;position: relative;text-align: center;}
+.box-area{border: 1px solid #F3F3F3;padding: 0 15px 6px;padding-top: 70px;margin-top: -42px;background-color: #F9F9F9;position: relative;text-align: center;}
 /* --- Map --- */
 .map{
 	position:relative;
@@ -1772,9 +1774,13 @@ article img.pull-right, article .align-right{
     background: #fff;
 }
 .box-area h3 {
-    margin-top: -16px;
+    margin-top: -26px;
     z-index: 12;
     position: relative;
+}
+.box-area h3:hover {
+	color: #2A6495;
+	/* font-weight: bold; */
 }
 .courses{
 padding:50px 0

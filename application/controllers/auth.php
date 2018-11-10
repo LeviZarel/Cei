@@ -21,7 +21,7 @@ class Auth extends CI_Controller {
     $username = $this->input->post("username");
     $password = $this->input->post("password");
     $res = $this->model_usuario->login($username, $password);
-    $res2 = $this->model_usuario-> getNombreFacilitador($res->ID_USUARIO);
+    
     if (!$res) {  
       $this->session->flashdata("error", "El usuario y/o son incorretos");  
       redirect(base_url());
@@ -31,7 +31,7 @@ class Auth extends CI_Controller {
         'NOMBRE_USUARIO' => $res->NOMBRE_USUARIO,
         'TIPO' => $res->TIPO,
         'login' => true,
-        'nombre_facilitador' => $res2->NOMBRE_APELLIDO
+        'nombre_usuario' => $res->NOMBRE_COMPLETO
       );
       $this->session->set_userdata($data);
       redirect(base_url()."dashboard");
