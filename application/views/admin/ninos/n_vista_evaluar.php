@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle"> Listar Niños
+				<h2 class="pageTitle"> Evaluar Niños
 				</h2>
 			</div>
 		</div>
@@ -27,8 +27,8 @@
               <th>#</th>
               <th>Nombre</th>
               <th>Apellidos</th>
-              <th>C.I.</th>
               <th>Tutor</th>
+              <th>Evaluado</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -39,8 +39,8 @@
                 <td><?php echo $nino->ID_NINO;?></td>
                 <td><?php echo $nino->NOMBRE;?></td>
                 <td><?php echo $nino->AP_PATERNO.' '.$nino->AP_MATERNO;?></td>
-                <td><?php echo $nino->CI;?></td>
                 <td><?php echo $nino->ID_TUTOR;?></td>
+                <td><?php echo $nino->HABILITADO==0? 'SI': 'NO';?></td>
                 <?php $data_nino=$nino->ID_NINO."*".$nino->ID_TUTOR."*".$nino->ID_RELACION_TUTOR."*".$nino->ID_GRUPO."*".$nino->URL_FOTO."*".$nino->NOMBRE."*".$nino->AP_PATERNO."*".$nino->AP_MATERNO."*".$nino->GENERO."*".$nino->CI."*".$nino->FECHA_NACIMIENTO."*".$nino->FECHA_REGISTRO."*".$nino->HABILITADO."*".base_url();?>
                 <td>
                 <div class="btn-group text-center">

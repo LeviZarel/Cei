@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle"> Administrar Preguntas
+				<h2 class="pageTitle"> Listar Preguntas
 				</h2>
 			</div>
 		</div>
@@ -27,7 +27,7 @@
               <th>#</th>
               <th>Prueba</th>           
               <th>Instrucción</th>
-              <th>Pregunta</th>
+              <th>Descripción o Pregunta</th>
               <th>Tipo</th>
               <th>Acciones</th>
             </tr>
@@ -44,9 +44,9 @@
                 <?php /* $data_nino=$pregunta->ID_PREGUNTA."*".$pregunta->ID_TUTOR."*".$pregunta->ID_RELACION_TUTOR."*".$pregunta->ID_GRUPO."*".$pregunta->URL_FOTO."*".$pregunta->NOMBRE."*".$pregunta->AP_PATERNO."*".$pregunta->AP_MATERNO."*".$pregunta->GENERO."*".$pregunta->CI."*".$pregunta->FECHA_NACIMIENTO."*".$pregunta->FECHA_REGISTRO."*".$pregunta->HABILITADO."*".base_url(); */?>
                 <td>
                 <div class="btn-group text-center">
-                  <button type="button" class="btn btn-info btn-ver-nino" data-toggle="modal" data-target="#myModal" value="<?php /* echo $data_nino; */?>" id="btn-ver-nino">
-                    <span class="fa fa-search"></span>
-                  </button>
+                  <!--button type="button" class="btn btn-info btn-ver-nino" data-toggle="modal" data-target="#myModal" value="<?php /* echo $data_nino; */?>" id="btn-ver-nino"-->
+                    <!--span class="fa fa-search"></span>
+                  </button-->
                   <a href="<?php echo base_url()?>admin/preguntas/edit/<?php echo $pregunta->ID_PREGUNTA;?>" class="btn btn-warning">
                     <span class="fa fa-pencil"></span>
                   </a>

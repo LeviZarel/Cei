@@ -29,7 +29,7 @@ class Auth extends CI_Controller {
       $data = array (
         'ID_USUARIO' => $res->ID_USUARIO,
         'NOMBRE_USUARIO' => $res->NOMBRE_USUARIO,
-        'TIPO' => $res->TIPO,
+        'TIPO' => $res->ID_TIPO_USUARIO,
         'login' => true,
         'nombre_usuario' => $res->NOMBRE_COMPLETO
       );

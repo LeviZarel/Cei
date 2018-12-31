@@ -46,7 +46,9 @@
                                 <li><a href="<?php echo base_url()?>login">Iniciar sesion</a></li>             
                         <?php    
                             }else{
-                        ?>      <li><a href="<?php echo base_url()?>admin/colaboradores/add">Registrar Colaborador</a></li> 
+                        ?>      <?php if($this->session->userdata("TIPO")==1):?>
+                                <li><a href="<?php echo base_url()?>admin/colaboradores/add">Registrar Colaborador</a></li>
+                                <?php endif;?>
                                 <li><a href="<?php echo base_url()?>admin/tutores/add">Registrar Tutor</a></li>
                                 <li><a href="<?php echo base_url()?>admin/ninos/add">Registrar Niño</a></li>
                                 <li><a href="<?php echo base_url();?>auth/logout">Cerrar Sesion</a></li>

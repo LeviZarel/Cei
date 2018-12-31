@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle"> Registrar Pregunta
+				<h2 class="pageTitle"> Editar Pregunta
 				</h2>
 			</div>
 		</div>
@@ -20,16 +20,18 @@
         <p><?php echo $this->session->flashdata("error")?></p>
         </div>
       <?php endif;?>
-      <form action="<?php echo base_url(); ?>admin/preguntas/store" method="post" enctype="multipart/form-data">
+      <form action="<?php echo base_url(); ?>admin/preguntas/update" method="post" enctype="multipart/form-data">
 					<div class="col-sm-12">
           
 						<div class="row">
 							
               <div class="col-sm-4 form-group">
 								<label>Prueba a la que pertenecera</label>
+                <input type="hidden" name="id" value="<?php echo $pregunta->ID_PREGUNTA?>">
                 <select class="form-control" style="width: 100%;" id="prueba" name="prueba"><!-- select2 -->
 									<?php foreach ($pruebas as $prueba):?>
-										<option value="<?php echo $prueba->ID_PRUEBA;?>">
+										<option value="<?php echo $prueba->ID_PRUEBA;?>"
+                    <?php if($prueba->ID_PRUEBA==$pregunta->ID_PRUEBA) echo "selected"?>>
 											<?php echo $prueba->NOMBRE;?>
 										</option>
 									<?php endforeach;?>
@@ -38,12 +40,12 @@
 
 							<div class="col-sm-4 form-group">
 								<label>Instrucción</label>
-								<textarea class="form-control" rows="3" placeholder="Ejemplo: Se le pide escribir su nombre" name="instruccion" required><?php echo set_value("instruccion");?></textarea>
+								<textarea class="form-control" rows="3" placeholder="Ejemplo: Se le pide escribir su nombre" name="instruccion" required><?php echo $pregunta->INSTRUCCION;?></textarea>
 							</div>
 
               <div class="col-sm-4 form-group">
 								<label>Descripción o Pregunta</label>
-								<textarea class="form-control" rows="3" placeholder="Ejemplo: Empecemos, escribe tu nombre completo" name="descripcion" required><?php echo set_value("descripcion");?></textarea>
+								<textarea class="form-control" rows="3" placeholder="Ejemplo: Empecemos, escribe tu nombre completo" name="descripcion" required><?php  echo $pregunta->PREGUNTA;?></textarea>
 							</div>
 
             </div>	
@@ -52,12 +54,13 @@
 
               <div class="col-sm-6 form-group">
 								<label>3</label>
-								<input type="text" placeholder="Ejemplo:  No escribe nada.." class="form-control" required="" name="tres">
+								<input type="text" placeholder="Ejemplo:  No escribe nada.." class="form-control" required="" name="tres"
+                value="<?php echo $pregunta->RESP_3;?>">
 							</div>
 
               <div class="col-sm-6 form-group">
 								<label>2</label>
-								<input type="text" placeholder="Ejemplo:  Escribe de forma ilegible.." class="form-control" required="" name="dos">
+								<input type="text" placeholder="Ejemplo:  Escribe de forma ilegible.." class="form-control" required="" name="dos" value="<?php echo $pregunta->RESP_2;?>">
 							</div>
 		
             </div>	
@@ -66,12 +69,12 @@
 
               <div class="col-sm-6 form-group">
                 <label>1</label>
-                <input type="text" placeholder="Ejemplo:  Solo escribe su nombre.." class="form-control" required="" name="uno">
+                <input type="text" placeholder="Ejemplo:  Solo escribe su nombre.." class="form-control" required="" name="uno" value="<?php echo $pregunta->RESP_1;?>">
               </div>
 
               <div class="col-sm-6 form-group">
                 <label>0</label>
-                <input type="text" placeholder="Ejemplo:  Escribe legible.." class="form-control" required="" name="cero">
+                <input type="text" placeholder="Ejemplo:  Escribe legible.." class="form-control" required="" name="cero" value="<?php echo $pregunta->RESP_0;?>">
               </div>
 
             </div>
@@ -83,7 +86,7 @@
 								<select id="tipo_pregunta" class="form-control" style="width: 100%;" name="tipo_pregunta">
                   <?php foreach ($tipo_preguntas as $tipo_pregunta):?>
 										<option value="<?php echo $tipo_pregunta->ID_TIPO_PREGUNTA;?>"
-                    <?php if($tipo_pregunta->ID_TIPO_PREGUNTA==1) echo "selected"?>>
+                    <?php if($tipo_pregunta->ID_TIPO_PREGUNTA==$pregunta->ID_TIPO_PREGUNTA) echo "selected"?>>
 											<?php echo $tipo_pregunta->TIPO_PREGUNTA;?>
 										</option>
 									<?php endforeach;?>

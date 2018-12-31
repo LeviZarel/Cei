@@ -5,3 +5,4 @@
 <p><strong>Estado civil:  </strong> <?php echo $tutor->ESTADO_CIVIL;?></p>
 <p><strong>C.I.:  </strong> <?php echo $tutor->CI;?></p>
 <p><strong>Fecha de registro: </strong> <?php echo $tutor->FECHA_REGISTRO;?></p>
+<!--no borrar que esto sirve-->

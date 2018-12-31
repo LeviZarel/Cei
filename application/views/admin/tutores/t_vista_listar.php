@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle"> Administrar Tutores
+				<h2 class="pageTitle"> Listar Tutores
 				</h2>
 			</div>
 		</div>

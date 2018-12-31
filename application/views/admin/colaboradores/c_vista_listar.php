@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2 class="pageTitle"> Administrar Colaboradores
+				<h2 class="pageTitle"> Listar Colaboradores
 				</h2>
 			</div>
 		</div>

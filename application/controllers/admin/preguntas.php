@@ -28,124 +28,178 @@ class Preguntas extends CI_Controller {
 		$this->load->view('admin/preguntas/p_vista_add', $data);
 		$this->load->view('footer');
   }
-  /* public function store(){
-    $nombre = $this->input->post("nombre");
-    $ap_paterno = $this->input->post("ap_paterno");
-    $ap_materno = $this->input->post("ap_materno");
-    $grupo = $this->input->post("grupo");
-    $fecha_nacimiento = $this->input->post("fecha_nacimiento");
-    $genero = $this->input->post("genero");
-    $ci = $this->input->post("ci");
-    $fecha_registro = $this->input->post("fecha_registro");
-    $tutor = $this->input->post("tutor");
-    $relacion = $this->input->post("relacion");
-    //para la imagen
-    $config = array(
-      'upload_path' => './assets/img/preguntas/upload',
-      'allowed_types' => 'png|jpg'
-    );
-    $this->load->library("upload", $config);
+  
+  public function store(){
+    $prueba = $this->input->post("prueba");
+    $instruccion = $this->input->post("instruccion");
+    $descripcion = $this->input->post("descripcion");
+    $tres = $this->input->post("tres");
+    $dos = $this->input->post("dos");
+    $uno = $this->input->post("uno");
+    $cero = $this->input->post("cero");
 
-    if ($this->upload->do_upload('foto')) {
-      $foto_data= array(
-        'upload_data' => $this->upload->data()
-      );
-      $data = array(
-        'id_tutor' => $tutor,
-        'id_relacion_tutor' => $relacion,
-        'id_grupo' => $grupo,
-        'url_foto' => $foto_data['upload_data']['file_name'],
-        'nombre' => $nombre,
-        'ap_paterno' => $ap_paterno,
-        'ap_materno' => $ap_materno,
-        'genero' => $genero,
-        'ci' => $ci,
-        'fecha_nacimiento' => $fecha_nacimiento,     
-        'fecha_registro' => $fecha_registro,
-        'habilitado' => "1"
-      );
-      if ($this->model_preguntas->save($data)){
-        redirect(base_url()."admin/preguntas");
-      }else {
-        $this->session->set_flashdata("error", "No se pudo registrar!");
-        redirect(base_url()."admin/preguntas/add");
-      }
-    }else {
-      echo $this->upload->display_errors();
+    $tipo_pregunta = $this->input->post("tipo_pregunta");
+    $campo_respuesta = '';// para el valor de 1
+    if($tipo_pregunta==2) {
+        // subir audio
+        $config = array(
+          'upload_path' => './assets/audio/preguntas/upload',
+          'allowed_types' => 'mp3|ogg|mp4'
+        );
+        $this->load->library("upload", $config);
+
+        if ($this->upload->do_upload('audio')) {
+          $audio_data= array(
+            'upload_data' => $this->upload->data()
+          );
+          $campo_respuesta = $audio_data['upload_data']['file_name'];        
+        }else {
+          echo $this->upload->display_errors();
+        }// fin subir audio
+    }else if($tipo_pregunta==3) {
+        // imagen
+        $config = array(
+          'upload_path' => './assets/img/preguntas/upload',
+          'allowed_types' => 'png|jpg'
+        );
+        $this->load->library("upload", $config);
+
+        if ($this->upload->do_upload('imagen')) {
+          $foto_data= array(
+            'upload_data' => $this->upload->data()
+          );
+          $campo_respuesta = $foto_data['upload_data']['file_name'];        
+        }else {
+          echo $this->upload->display_errors();
+        }// fin imagen 
+    }else if($tipo_pregunta==4) {
+      // oraciones
+      $campo_respuesta = $this->input->post("oraciones");
+    }else if($tipo_pregunta==5) {
+      // preguntas
+      $campo_respuesta = $this->input->post("preguntas");
     }
-
-    
+    //guardo datos
+    $data = array(
+      'id_tipo_pregunta' => $tipo_pregunta,
+      'id_prueba' => $prueba,
+      'instruccion' => $instruccion,
+      'pregunta' => $descripcion,
+      'resp_3' => $tres,
+      'resp_2' => $dos,
+      'resp_1' => $uno,
+      'resp_0' => $cero,
+      'campo_respuesta' => $campo_respuesta,
+      'habilitado' => "1"
+    );
+    if ($this->model_preguntas->save($data)){
+      redirect(base_url()."admin/preguntas");
+    }else {
+      $this->session->set_flashdata("error", "No se pudo registrar!");
+      redirect(base_url()."admin/preguntas/add");
+    }
   }
 
   public function edit($id){
     $data = array(
-      'nino' => $this->model_preguntas->get($id),
-      'tutores' => $this->model_tutores->getAll(),
-      'grupos' => $this->model_grupo->getAll(),
-      'relacion_tutores' => $this->model_relacion_tutor->getAll(),
+      'pregunta' => $this->model_preguntas->get($id),
+      'pruebas' => $this->model_pruebas->getAll(),
+      'tipo_preguntas' => $this->model_tipo_preguntas->getAll(),
     );
 		$this->load->view('header');
-		$this->load->view('admin/preguntas/n_vista_edit', $data);
+		$this->load->view('admin/preguntas/p_vista_edit', $data);
 		$this->load->view('footer');
   }
   
   public function update(){
-    $id = $this->input->post("id");
-    $nombre = $this->input->post("nombre");
-    $ap_paterno = $this->input->post("ap_paterno");
-    $ap_materno = $this->input->post("ap_materno");
+    $id = $this->input->post("id"); 
+    $prueba = $this->input->post("prueba");
+    $instruccion = $this->input->post("instruccion");
+    $descripcion = $this->input->post("descripcion");
+    $tres = $this->input->post("tres");
+    $dos = $this->input->post("dos");
+    $uno = $this->input->post("uno");
+    $cero = $this->input->post("cero");
 
-    $grupo = $this->input->post("grupo");
-    $fecha_nacimiento = $this->input->post("fecha_nacimiento");
-    $genero = $this->input->post("genero");
-    $ci = $this->input->post("ci");
-    $fecha_registro = $this->input->post("fecha_registro");
-    $tutor = $this->input->post("tutor");
-    $relacion = $this->input->post("relacion");
-    //para la imagen
-    $config = array(
-      'upload_path' => './assets/img/preguntas/upload',
-      'allowed_types' => 'png|jpg'
-    );
-    $this->load->library("upload", $config);
-
-    if ($this->upload->do_upload('foto_edit')) {
-      $foto_data= array(
-        'upload_data' => $this->upload->data()
+    $tipo_pregunta = $this->input->post("tipo_pregunta");
+    $campo_respuesta = '';// para el valor de 1
+    if($tipo_pregunta==2) {
+      // subir audio
+      $config = array(
+        'upload_path' => './assets/audio/preguntas/upload',
+        'allowed_types' => 'mp3|ogg|mp4'
       );
-      $foto_actual= $foto_data['upload_data']['file_name'];
-      $foto_antigua = $this->model_preguntas->get($id)->URL_FOTO;
-      unlink('./assets/img/preguntas/upload/'.$foto_antigua);
+      $this->load->library("upload", $config);
 
-      $data = array(
-        'id_tutor' => $tutor,
-        'id_relacion_tutor' => $relacion,
-        'id_grupo' => $grupo,
-        'url_foto' => $foto_actual,
-        'nombre' => $nombre,
-        'ap_paterno' => $ap_paterno,
-        'ap_materno' => $ap_materno,
-        'genero' => $genero,
-        'ci' => $ci,
-        'fecha_nacimiento' => $fecha_nacimiento,     
-        'fecha_registro' => $fecha_registro
-      );
-
-      if ($this->model_preguntas->update($id, $data)) {
-        redirect(base_url()."admin/preguntas");
+      if ($this->upload->do_upload('audio')) {
+        $audio_data= array(
+          'upload_data' => $this->upload->data()
+        );
+        $audio_antiguo = $this->model_preguntas->get($id)->CAMPO_RESPUESTA;
+        unlink('./assets/audio/preguntas/upload/'.$audio_antiguo);
+        $campo_respuesta = $audio_data['upload_data']['file_name'];  
+        if($campo_respuesta=='')
+          $campo_respuesta = $audio_antiguo;  
       }else {
-        $this->session->set_flashdata("error", "No se pudo editar!".$id);
-        redirect(base_url()."admin/preguntas/edit/".$id);
-      }
-    }else {
-      echo $this->upload->display_errors();
-    }  
-  }*/
+        echo $this->upload->display_errors();
+      }// fin subir audio
+    }else if($tipo_pregunta==3) {
+        // imagen
+        $config = array(
+          'upload_path' => './assets/img/preguntas/upload',
+          'allowed_types' => 'png|jpg'
+        );
+        $this->load->library("upload", $config);
 
-  /* public function delete($id){
-    $foto_antigua = $this->model_preguntas->get($id)->URL_FOTO;//para eliminar foto
-    unlink('./assets/img/preguntas/upload/'.$foto_antigua);//para eliminar foto
+        if ($this->upload->do_upload('imagen')) {
+          $foto_data= array(
+            'upload_data' => $this->upload->data()
+          );
+          //$foto_actual= $foto_data['upload_data']['file_name'];
+          $foto_antigua = $this->model_preguntas->get($id)->CAMPO_RESPUESTA;
+          unlink('./assets/img/preguntas/upload/'.$foto_antigua);
+          $campo_respuesta = $foto_data['upload_data']['file_name'];        
+        }else {
+          echo $this->upload->display_errors();
+        }// fin imagen 
+    }else if($tipo_pregunta==4) {
+      // oraciones
+      $campo_respuesta = $this->input->post("oraciones");
+    }else if($tipo_pregunta==5) {
+      // preguntas
+      $campo_respuesta = $this->input->post("preguntas");
+    }
+    //guardo datos
+    $data = array(
+      'id_tipo_pregunta' => $tipo_pregunta,
+      'id_prueba' => $prueba,
+      'instruccion' => $instruccion,
+      'pregunta' => $descripcion,
+      'resp_3' => $tres,
+      'resp_2' => $dos,
+      'resp_1' => $uno,
+      'resp_0' => $cero,
+      'campo_respuesta' => $campo_respuesta
+    );
+
+    if ($this->model_preguntas->update($id, $data)) {
+      redirect(base_url()."admin/preguntas");
+    }else {
+      $this->session->set_flashdata("error", "No se pudo editar!".$id);
+      redirect(base_url()."admin/preguntas/edit/".$id);
+    }
+  }
+
+  public function delete($id){
+    $pregunta_recuperada = $this->model_preguntas->get($id);
+    if($pregunta_recuperada->ID_TIPO_PREGUNTA==2){// audio
+      $audio = $pregunta_recuperada->CAMPO_RESPUESTA;
+      unlink('./assets/audio/preguntas/upload/'.$audio);
+    }else if ($pregunta_recuperada->ID_TIPO_PREGUNTA==3){// imagen
+      $imagen = $pregunta_recuperada->CAMPO_RESPUESTA;
+      unlink('./assets/img/preguntas/upload/'.$imagen);
+    }  
     $this->model_preguntas->delete($id);
     echo "admin/preguntas";
-  } */
+  }
 }

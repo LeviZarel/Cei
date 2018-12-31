@@ -20,6 +20,14 @@ class Ninos extends CI_Controller {
 		$this->load->view('admin/ninos/n_vista_listar', $data);
 		$this->load->view('footer');
   }
+  public function evaluar(){
+    $data = array(
+      'ninos' => $this->model_ninos->getAll(),
+    );
+		$this->load->view('header');
+		$this->load->view('admin/ninos/n_vista_evaluar', $data);
+		$this->load->view('footer');
+  }
   public function add(){
     $data = array(
       'tutores' => $this->model_tutores->getAll(),
